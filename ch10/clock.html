@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <script>
+        function setDiv(){
+            let div = document.querySelector('div');
+            let now = new Date();  //현재 시간 가져오기
+            /*
+            let content = `${now.getHours()} : ${now.getMinutes()} : ${now.getSeconds()}`;
+            div.innerHTML= content;
+            */
+           div.innerHTML=`${now.getHours()} : ${now.getMinutes()} : ${now.getSeconds()}`;          
+        }
+    </script>
+</head>
+<body>
+    <div></div>
+    <script>
+        //setInterval(() => {setDiv()},1000)
+        setInterval("setDiv()",1000)
+    </script>
+</body>
+</html>
