@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 로드</title>
+    <script>
+        function changeImage(){
+            let img=document.querySelector("img")
+            let sel=document.querySelector('select')
+            let span = document.querySelecter('span')
+            img.src=sel.options[sel.selectedIndex].value;
+            img.onload = function(){
+                span.innerHTML =img.width+"x"+img.height;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>이미지 크기 출력</h2>
+    <hr>
+    <form>
+        <select onchange = "changeImage();">
+            <option value="./apple.jpg" >사과</option>
+            <option value = "./banana.jpg">바나나</option>
+            <option  value = "./mango.jpg" selected>망고</option>
+        </select>
+        &nbsp;&nbsp;
+        <span onchange = "changeImage();"></span>
+    </form>
+    <br><br>
+    <form>
+        <img src = "../media/mango.jpg" sidth="150">
+    </form>
+</body>
+</html>
+
