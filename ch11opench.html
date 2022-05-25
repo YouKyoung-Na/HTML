@@ -19,6 +19,16 @@
         }
         function drawChart(){
             let inputs = document.querySelectorAll('input[type="number"]');
+            let numbers =[];
+            for(let input of inputs){
+                numbers.push(Number(input.value));
+            }
+            let total = numbers.reduce((a,e)=>a+e,0);  
+            //reduce는 함수(f)를 하나 받고 초기값(vzero)을 하나 받음 
+            //누산기가 zero이고 첫번째 값은 3(가정) 그럼 결과 값이 새로 3이 됨.
+            //그 후 두번째 원소와 누산기를 계산, 따라서 누산기로 계속 값을 더해감.
+            //따로 반복문을 돌릴 필요가 없음
+            console.log(numbers.join("",""));
         }
     </script>
 </head>
@@ -31,7 +41,7 @@
         C <input type="number" value="0"> 명
         D <input type="number" value="0"> 명
         F <input type="number" value="0"> 명
-        <button type="button" onclick="drawChart()"></button>
+        <button type="button" onclick="drawChart()">차트그리기</button>
     </form>
     <br>
     <canvas width="600" height="400" style="background-color:skyblue"></canvas>
