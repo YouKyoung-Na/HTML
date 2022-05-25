@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+</head>
+<body>
+    <h2>캔버스</h2>
+    <cansvas width="600" height="400" style ="background-color: skyblue;">
+    </cansvas>
+    <script>
+        let cvs = document.querySelector('canvas');
+        let ctx = cvs.getContext('2d');    
+        ctx.font="50px sans-serif";
+        ctx.fillStyle="magenta";
+        ctx.textAlign="center";
+        ctx.fillText("Hello", 50,100);
+        ctx.strokeText("Hello", 50, 100);  //이 좌표란? 50은 왼쪽 모서리 좌표, 100은 맨 위에서 hello까지의 좌표. 그밖에도 text-align으로 조정가능 default값은 left
+        ctx.beginPath();
+        ctx.moveTo(150,100);
+        ctx.lineTo(250,100);
+        </script>
+</body>
+</html>
