@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파이 차트</title>
+    <script>
+        let cvs = null;
+        let ctx = null;
+        let colors=['blue', 'green', 'yellow', 'magenta', 'red'];
+        let grades=['A','B','C','D', 'F'];
+        const centerX = 300;
+        const centerY = 200;
+        const radius = 160;
+        function init(){
+            cvs=document.querySelector('canvas')
+            ctx = cvs.getContext('2d');
+        }
+        function drawChart(){
+            let inputs = document.querySelectorAll('input[type="number"]');
+        }
+    </script>
+</head>
+<body onload="init()">
+    <h2>학점 별로 학생 수를 입력하면 파이차트로 비율 그리기</h2>
+    <hr>
+    <form>
+        A <input type="number" value="0"> 명
+        B <input type="number" value="0"> 명
+        C <input type="number" value="0"> 명
+        D <input type="number" value="0"> 명
+        F <input type="number" value="0"> 명
+        <button type="button" onclick="drawChart()"></button>
+    </form>
+    <br>
+    <canvas width="600" height="400" style="background-color:skyblue"></canvas>
+</body>
+</html>
