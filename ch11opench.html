@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파이 차트</title>
+    <script>
+        let cvs = null;
+        let ctx = null;
+        let colors=['blue', 'green', 'yellow', 'magenta', 'red'];
+        let grades=['A','B','C','D', 'F'];
+        const centerX = 300;
+        const centerY = 200;
+        const radius = 160;
+        function init(){
+            cvs=document.querySelector('canvas')
+            ctx = cvs.getContext('2d');
+            ctx.fillStyle = 'blue';
+            ctx.font="25px sans-serif";
+        }
+        function drawChart(){
+            let inputs = document.querySelectorAll('input[type="number"]');
+            let numbers =[];
+            for(let input of inputs){
+                numbers.push(Number(input.value));
+            }
+            let total = numbers.reduce((a,e)=>a+e,0);  
+            //reduce는 함수(f)를 하나 받고 초기값(vzero)을 하나 받음 
+            //누산기가 zero이고 첫번째 값은 3(가정) 그럼 결과 값이 새로 3이 됨.
+            //그 후 두번째 원소와 누산기를 계산, 따라서 누산기로 계속 값을 더해감.
+            //따로 반복문을 돌릴 필요가 없음
+            for(let i=0, sAngle=0; i<numbers.length; i++){
+                let rad = 2* Math.PI * numbers[i] / total;
+                ctx.beginPath();
+                ctx.moveTo(centerX,centerY);
+                ctx.arx(centerX, centerY, radius, sAngle, sAngle+rad);
+                ctx.closePath();
+                ctx.fillStyle = colors[i];
+                ctx.fill();
+                sAngle += rad;
+            }
+            for(let i=0; i<grades.length; i++){
+                let pc = Math.floor((numbers[i]/total)*100);
+                ctx.fillText(`${grades[i]} 학점 ${pc}%: ${colors[i]}`, 20, 20+20*i)  //x좌표 20 y좌표 20씩 늘어남
+            }
+            //console.log(numbers.join("",""));
+        }
+    </script>
+</head>
+<body onload="init()">
+    <h2>학점 별로 학생 수를 입력하면 파이차트로 비율 그리기</h2>
+    <hr>
+    <form>
+        A <input type="number" value="0"> 명
+        B <input type="number" value="0"> 명
+        C <input type="number" value="0"> 명
+        D <input type="number" value="0"> 명
+        F <input type="number" value="0"> 명
+        <button type="button" onclick="drawChart()">차트그리기</button>
+    </form>
+    <br>
+    <canvas width="600" height="400" style="background-color:skyblue"></canvas>
+</body>
+</html>
