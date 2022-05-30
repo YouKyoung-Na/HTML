@@ -1,0 +1,7 @@
+img{
+    padding: 5px;
+    border: 15px solid;   
+}
+#round{
+    border-image: url("check.jpg") 30 round;
+}
