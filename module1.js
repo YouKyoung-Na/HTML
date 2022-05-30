@@ -1,5 +1,5 @@
 let names=['park', 'kim', 'song'];
-exports.sayHello = function () {  //sayHello 추출한다는 뜻
+exports.sayHello function () {  //sayHello 추출한다는 뜻
     names.forEach((name)=>{
         console.log(`hello ${name}님`);
     })

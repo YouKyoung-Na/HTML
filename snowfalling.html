@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>눈 내리는 샤갈의 마을</title>
+    <title>눈내리는 샤갈의 마을</title>
     <style>
         body{
-            background-image: url(./images/snow.jpg);
-            background-size: cover;
-            overflow: hidden;
+            background-image: url("./snow.jpg");
+            background-size: cover; 
+            background-repeat: no-repeat;
         }
         div{
             color: white;
@@ -18,47 +18,34 @@
             height: 40px;
             position: absolute;
             top: 20px;
-            left: 120px;
+            left: 120px;            
         }
     </style>
     <script>
         const vStep = 10;
-        const hStep = 5;
-        const maxTop=window.innerHeight -40;
-        const numSnow = 30;
-        const maxLeft = window.innerWidth -80;
+        const hStep = 10;
 
-        let snowarray=[];
-        function moveSnow(){
-            for (let snowDiv of snowarray){
-            
+        function moveSnow(snowDiv){
             let curTop = snowDiv.style.top;
             let curLeft = snowDiv.style.left;
-            curTop = Number(curTop.substring(0, curTop.length-2));
-            curLeft = Number(curLeft.substring(0, curLeft.length-2));
-            curTop += Math.floor(Math.random()*vStep);
-            if (curTop > maxTop){
-                curTop =40;
-            }
-            curLeft += Math.floor((-0.5+Math.random())*hStep);
-            snowDiv.style.top = curTop + "px";
-            snowDiv.style.left = curLeft + "px";
-            }        
-        }
+            curTop = Number(sucTop.substring(0, curTop.length-2));
+            curLeft = Number(sucTop.substring(0, curLeft.length-2));
+            curTop += (Math.random()*vStep);  //랜덤하게 내려감
+            curLeft += Math.floor((-0.5+Math.random())*hStep)   //왼쪽으로 갈 수도 있으니 - 
+            div.style.top = curTop + "px";  //px 안붙이면 동작 안함!!!!
+            div.style.left = curLeft + "px";
+        } 
     </script>
 </head>
 <body>
-    
+    <div>*</div>
     <script>
-        for (let i = 0; i < numSnow; i++){
-        let snowDiv = document.createElement("div");
-        snowDiv.innerHTML="*";
-        snowDiv.style.top = maxTop/2*Math.random() + "px";
-        snowDiv.style.left = maxLeft/2*Math.random() + "px";
-        document.body.appendChild(snowDiv);
-        snowarray.push(snowDiv);
+        let div = document.querySelector('div');
+        setInterval("moveSnow(div);",1000);
+        /*
+        for(let i=0; i<10; i++){
         }
-        setInterval("moveSnow();", 100);
+        */
     </script>
 </body>
 </html>

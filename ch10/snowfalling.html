@@ -10,6 +10,7 @@
             background-image: url("./snow.jpg");
             background-size: cover; 
             background-repeat: no-repeat;
+            overflow: hidden;
         }
         div{
             color: white;
@@ -17,35 +18,51 @@
             width: 40px;
             height: 40px;
             position: absolute;
-            top: 20px;
-            left: 120px;            
+            /* top: 20px;
+            left: 120px;             */
         }
     </style>
     <script>
+        const numSnow = 30;
         const vStep = 10;
         const hStep = 10;
+        const maxTop = window.innerHeight - 40;
+        const maxLeft = window.innerWidth - 80;
 
-        function moveSnow(snowDiv){
+        let snowArray = [];
+
+        function moveSnow(){
+            for(let snowDiv of snowArray){  //snowArray에 들어가 있는 각각의 snowDiv에 대해서
             let curTop = snowDiv.style.top;
             let curLeft = snowDiv.style.left;
-            curTop = Number(sucTop.substring(0, curTop.length-2));
-            curLeft = Number(sucTop.substring(0, curLeft.length-2));
+            curTop = Number(curTop.substring(0, curTop.length-2));
+            curLeft = Number(curLeft.substring(0, curLeft.length-2));
             curTop += (Math.random()*vStep);  //랜덤하게 내려감
+            if(curTop >= maxTop){
+                curTop =40;
+            }
             curLeft += Math.floor((-0.5+Math.random())*hStep)   //왼쪽으로 갈 수도 있으니 - 
-            div.style.top = curTop + "px";  //px 안붙이면 동작 안함!!!!
-            div.style.left = curLeft + "px";
+            snowDiv.style.top = curTop + "px";  //px 안붙이면 동작 안함!!!!
+            snowDiv.style.left = curLeft + "px";
+            }
+            
         } 
     </script>
 </head>
 <body>
-    <div>*</div>
     <script>
-        let div = document.querySelector('div');
-        setInterval("moveSnow(div);",1000);
-        /*
-        for(let i=0; i<10; i++){
+        for(let i=0; i<numSnow; i++){
+        let snowDiv = document.createElement('div');   //let div = document.querySelector('div');
+        snowDiv.innerHTML = "*";
+        snowDiv.style.top = maxTop / 2 * Math.random()+ "px";
+        snowDiv.style.left = maxLeft * Math.random()+ "px";
+        document.body.appendChild(snowDiv);       
+        snowArray.push(snowDiv);        
         }
-        */
+
+        setInterval("moveSnow();",100);
+        
+        
     </script>
 </body>
 </html>
